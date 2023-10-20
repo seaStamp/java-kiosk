@@ -1,3 +1,5 @@
+package product;
+
 public class Menu {
     private final String menuName;
     private String info;
