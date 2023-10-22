@@ -5,9 +5,11 @@ import java.util.Scanner;
 
 public class Kiosk {
 
+
     private static Order orders = new Order();
     private static Menu[] menu = McMenu.mcMenu.clone();
     private static Product[] products;
+    private static int status;
 
     public static boolean start() {
         Scanner scanner = new Scanner(System.in);
@@ -60,7 +62,6 @@ public class Kiosk {
         System.out.printf("%d. %-10s| %s\n", ++i, "Order", "장바구니를 확인 후 주문합니다");
         System.out.printf("%d. %-10s| %s\n", ++i, "Cancel", "진행중인 주문을 취소합니다");
 
-
         // 입력받는 것과
         // 받은 값에 따라 논리 처리
         // 다른 화면을 호출?
@@ -84,9 +85,15 @@ public class Kiosk {
         System.out.print("> ");
         switch (scanner.nextInt()) {
             case 1 -> {
-                try{
+                if (orders.getOrderSize() == 0) {
+                    displayLine();
+                    System.out.println("장바구니가 비어 있어서 주문할 수 없습니다. 메뉴를 추가해주세요.");
+                    System.out.println();
+                    displayMain();
+                }
+                try {
                     displayOrderComplete();
-                } catch (InterruptedException e){
+                } catch (InterruptedException e) {
                     System.out.println(e.getMessage());
                 }
             }
@@ -104,7 +111,8 @@ public class Kiosk {
         System.out.println();
         System.out.println("[ " + p[0].getMenuName() + " MENU ]");
         for (int i = 0; i < p.length; i++) {
-            System.out.printf("%d. %-22s | W %.1f | %s\n", i+1, p[i].getProductName(), p[i].getPrice(), p[i].getMenuInfo());
+            System.out.printf("%d. %-22s | W %.1f | %s\n", i + 1, p[i].getProductName(), p[i].getPrice(),
+                    p[i].getMenuInfo());
         }
     }
 
@@ -162,7 +170,7 @@ public class Kiosk {
         orders.orderClear();
         System.out.println("주문이 완료되었습니다!");
         System.out.println();
-        System.out.printf("대기번호는 [ %d ] 번 입니다.\n",orders.getId());
+        System.out.printf("대기번호는 [ %d ] 번 입니다.\n", orders.getId());
         System.out.printf("(3초후 메뉴판으로 돌아갑니다.))\n");
         displayLine();
         Thread.sleep(3000);

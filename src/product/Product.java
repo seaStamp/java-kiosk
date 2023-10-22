@@ -1,8 +1,9 @@
 package product;
 
 public class Product extends Menu{
-    private final String productName;
-    private final double price;
+    private String productName;
+    private double price;
+
 
     public Product(String menuName, String productName, String info, double price){
         super(menuName, info);

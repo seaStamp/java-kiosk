@@ -23,6 +23,11 @@ public class Order {
         return cost;
     }
 
+    // 추가한 상품의 갯수
+    public int getOrderSize(){
+        return this.products.size();
+    }
+
     // 상품을 객체를 담는 메서드
     public void addProduct(Product p) {
         this.products.add(p);

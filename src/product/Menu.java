@@ -1,8 +1,9 @@
 package product;
 
 public class Menu {
-    private final String menuName;
-    private String info;
+    protected String menuName;
+    protected String info;
+
     public Menu(String menuName, String info){
         this.menuName = menuName;
         this.info = info;
