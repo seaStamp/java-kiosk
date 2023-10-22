@@ -9,7 +9,7 @@ public class InputDevice {
         int answer = 0;
 
         try {
-            answer = parser.parseInt(scanner.nextInt(),n);
+            answer = parser.parse(scanner.next(),n);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -107,7 +107,6 @@ public class OutputDevice {
 
     // 주문완료 화면
     public void displayOrderComplete(Order o) throws InterruptedException {
-        displayLine();
         System.out.println("주문이 완료되었습니다!");
         System.out.println();
         System.out.printf("대기번호는 [ %d ] 번 입니다.\n", o.getId());
