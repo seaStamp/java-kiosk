@@ -18,27 +18,36 @@ public class Order {
     public double getTotalCost() {
         double cost = 0;
         for (Product p : products) {
-            cost += p.getPrice();
+            cost += (p.getPrice() * p.getQuantity());
         }
         return cost;
     }
 
     // 추가한 상품의 갯수
-    public int getOrderSize(){
+    public int getOrderSize() {
         return this.products.size();
     }
 
     // 상품을 객체를 담는 메서드
     public void addProduct(Product p) {
-        this.products.add(p);
+        int idx = products.indexOf(p);
+        if (idx != -1) {
+            p.increaseQuantity();
+        } else {
+            this.products.add(p);
+        }
     }
 
-    public void upId(){
+    public void upId() {
         this.id++;
     }
+
     public void orderClear() {
+        for(Product p : products){
+            if(p.getQuantity() > 1){
+                p.clearQuantity();
+            }
+        }
         this.products.clear();
     }
 }
-
-

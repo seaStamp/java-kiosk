@@ -103,7 +103,7 @@ public class Kiosk {
             case 0 -> status = KioskStatus.CART;
             case 1 -> {
                 if (o.getOrderSize() == 0) {
-                    System.out.println("장바구니가 비어 있어서 주문할 수 없습니다. 메뉴를 추가해주세요.");
+                    System.out.println("<!> 장바구니가 비어 있어서 주문할 수 없습니다. 메뉴를 추가해주세요.");
                     System.out.println();
                 } else {
                     status = KioskStatus.ORDER_COMPLETE;

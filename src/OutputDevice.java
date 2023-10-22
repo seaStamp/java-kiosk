@@ -57,7 +57,7 @@ public class OutputDevice {
         System.out.print("> ");
     }
 
-    public void displayProductAdded(Product p){
+    public void displayProductAdded(Product p) {
         System.out.printf("%s가 장바구니에 추가되었습니다\n\n", p.getProductName());
     }
 
@@ -67,7 +67,8 @@ public class OutputDevice {
         System.out.println();
         System.out.println("[ Orders ]");
         for (Product p : orders.getProducts()) {
-            System.out.printf("%-22s| W %.1f | %s\n", p.getProductName(), p.getPrice(), p.getMenuInfo());
+            System.out.printf("%-22s| W %.1f | %d개 | %s\n", p.getProductName(), p.getPrice(), p.getQuantity(),
+                    p.getMenuInfo());
         }
         System.out.println();
         System.out.println("[ Total ]");
@@ -75,25 +76,6 @@ public class OutputDevice {
         System.out.println("1. 주문\t\t2. 메뉴판");
         displayLine();
         System.out.print("> ");
-//        switch (scanner.nextInt()) {
-//            case 1 -> {
-//                if (orders.getOrderSize() == 0) {
-//                    displayLine();
-//                    System.out.println("장바구니가 비어 있어서 주문할 수 없습니다. 메뉴를 추가해주세요.");
-//                    System.out.println();
-//                    displayMain();
-//                }
-//                try {
-//                    displayOrderComplete();
-//                } catch (InterruptedException e) {
-//                    System.out.println(e.getMessage());
-//                }
-//            }
-//            case 2 -> {
-//                displayLine();
-//                displayMainMenu();
-//            }
-//        }
     }
 
     // 주문취소화면 출력
