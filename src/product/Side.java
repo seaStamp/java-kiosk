@@ -5,4 +5,3 @@ public class Side extends Product {
         super(menuName, productName, info, price);
     }
 }
-

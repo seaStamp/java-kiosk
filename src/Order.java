@@ -33,6 +33,9 @@ public class Order {
         this.products.add(p);
     }
 
+    public void upId(){
+        this.id++;
+    }
     public void orderClear() {
         this.products.clear();
     }
