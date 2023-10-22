@@ -79,7 +79,6 @@ public class OutputDevice {
 
     // 장바구니 화면 출력
     public void displayCart(Order orders) {
-        Scanner scanner = new Scanner(System.in);
         displayLine();
         System.out.println("아래와 같이 주문 하시겠습니까?");
         System.out.println();

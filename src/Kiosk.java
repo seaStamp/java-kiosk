@@ -1,8 +1,6 @@
 import product.Menu;
 import product.Product;
 
-import java.util.Scanner;
-
 public class Kiosk {
     private static int status;
 
