@@ -1,4 +1,6 @@
-import product.Product;
+package model;
+
+import model.Product;
 
 import java.util.ArrayList;
 
@@ -70,6 +72,7 @@ public class Order {
     public static void saveTotalProducts(ArrayList<Product> products){
         for(Product p : products ){
             int idx = totalProducts.indexOf(p);
+            p.saveQuantity();
             if (idx == -1) {
                 totalProducts.add(p);
             }

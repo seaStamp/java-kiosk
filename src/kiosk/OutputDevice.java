@@ -1,6 +1,8 @@
-import java.util.Scanner;
-import product.Menu;
-import product.Product;
+package kiosk;
+
+import model.Menu;
+import model.Order;
+import model.Product;
 
 public class OutputDevice {
 
@@ -93,8 +95,8 @@ public class OutputDevice {
         System.out.println();
         System.out.printf("대기번호는 [ %d ] 번 입니다.\n", o.getId());
         System.out.printf("(3초후 메뉴판으로 돌아갑니다.))\n");
-        displayLine();
         Thread.sleep(3000);
+        displayLine();
     }
 
     public void displayManagerMode() {

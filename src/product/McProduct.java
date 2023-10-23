@@ -1,7 +1,4 @@
-import product.Beverage;
-import product.Bugger;
-import product.Dessert;
-import product.Side;
+package product;
 
 public class McProduct {
     // bugger

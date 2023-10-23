@@ -1,4 +1,6 @@
-import product.Menu;
+package product;
+
+import model.Menu;
 
 public class McMenu {
     public final static Menu BUGGERS = new Menu("Buggers", "주문 즉시 바로 조리해 더욱 맛있는 맥도날드 버거!");

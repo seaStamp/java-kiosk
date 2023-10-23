@@ -1,4 +1,4 @@
-package product;
+package model;
 
 public class Product extends Menu {
     private String productName;
@@ -35,7 +35,10 @@ public class Product extends Menu {
     }
 
     public void clearQuantity() {
-        this.totalQuantity += this.quantity;
         this.quantity = 0;
+    }
+
+    public void saveQuantity() {
+        this.totalQuantity += this.quantity;
     }
 }

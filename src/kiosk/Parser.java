@@ -1,3 +1,6 @@
+package kiosk;
+
+import exception.BadInputException;
 import java.util.regex.Pattern;
 public class Parser {
     private static final String NUMBER_REG = "^[0-9]*$"; // 숫자만

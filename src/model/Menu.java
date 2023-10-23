@@ -1,4 +1,4 @@
-package product;
+package model;
 
 public class Menu {
     protected String menuName;

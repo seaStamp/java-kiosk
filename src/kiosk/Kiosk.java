@@ -1,5 +1,10 @@
-import product.Menu;
-import product.Product;
+package kiosk;
+
+import model.Menu;
+import model.Order;
+import model.Product;
+import product.McMenu;
+import product.McProduct;
 
 public class Kiosk {
     private static int status;
