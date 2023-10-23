@@ -8,7 +8,7 @@ public class Parser {
             throw new BadInputException(lastNum);
         }
         number = Integer.parseInt(answer);
-        if (number < 1 || number > lastNum){
+        if (number < 0 || number > lastNum){
             throw new BadInputException(lastNum);
         }
         return number;

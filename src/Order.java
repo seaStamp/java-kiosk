@@ -3,11 +3,17 @@ import product.Product;
 import java.util.ArrayList;
 
 public class Order {
+
+    static private ArrayList<Product> totalProducts = new ArrayList<>();
     private int id = 1;
     private ArrayList<Product> products = new ArrayList<>();
 
     public ArrayList<Product> getProducts() {
         return this.products;
+    }
+
+    public static ArrayList<Product> getTotalProducts() {
+        return totalProducts;
     }
 
     public int getId() {
@@ -23,6 +29,15 @@ public class Order {
         return cost;
     }
 
+    // 전체 판매한 상품 금액
+    public static double getTotalProductsCost(){
+        double cost = 0;
+        for (Product p : totalProducts) {
+            cost += (p.getPrice() * p.getTotalQuantity());
+        }
+        return cost;
+    }
+
     // 추가한 상품의 갯수
     public int getOrderSize() {
         return this.products.size();
@@ -31,9 +46,8 @@ public class Order {
     // 상품을 객체를 담는 메서드
     public void addProduct(Product p) {
         int idx = products.indexOf(p);
-        if (idx != -1) {
-            p.increaseQuantity();
-        } else {
+        p.increaseQuantity();
+        if (idx == -1) {
             this.products.add(p);
         }
     }
@@ -42,12 +56,23 @@ public class Order {
         this.id++;
     }
 
+    // 주문을 초기화하는 메서드
     public void orderClear() {
         for(Product p : products){
-            if(p.getQuantity() > 1){
+            if(p.getQuantity() > 0){
                 p.clearQuantity();
             }
         }
         this.products.clear();
+    }
+
+    // 전체 주문내역을 저장하는 메서드
+    public static void saveTotalProducts(ArrayList<Product> products){
+        for(Product p : products ){
+            int idx = totalProducts.indexOf(p);
+            if (idx == -1) {
+                totalProducts.add(p);
+            }
+        }
     }
 }

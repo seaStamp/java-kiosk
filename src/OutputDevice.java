@@ -62,17 +62,17 @@ public class OutputDevice {
     }
 
     // 장바구니 화면 출력
-    public void displayCart(Order orders) {
+    public void displayCart(Order o) {
         System.out.println("아래와 같이 주문 하시겠습니까?");
         System.out.println();
         System.out.println("[ Orders ]");
-        for (Product p : orders.getProducts()) {
+        for (Product p : o.getProducts()) {
             System.out.printf("%-22s| W %.1f | %d개 | %s\n", p.getProductName(), p.getPrice(), p.getQuantity(),
                     p.getMenuInfo());
         }
         System.out.println();
         System.out.println("[ Total ]");
-        System.out.printf("W %.1f\n\n", orders.getTotalCost());
+        System.out.printf("W %.1f\n\n", o.getTotalCost());
         System.out.println("1. 주문\t\t2. 메뉴판");
         displayLine();
         System.out.print("> ");
@@ -95,5 +95,20 @@ public class OutputDevice {
         System.out.printf("(3초후 메뉴판으로 돌아갑니다.))\n");
         displayLine();
         Thread.sleep(3000);
+    }
+
+    public void displayManagerMode() {
+        System.out.println("[ 총 판매금액 현황 ]");
+        System.out.printf("현재까지 총 판매된 금액은 [ W %.1f ] 입니다.\n\n", Order.getTotalProductsCost());
+        System.out.println("[ 총 판매상품 목록 현황 ]");
+        System.out.println("현재까지 총 판매된 상품 목록은 아래와 같습니다.");
+        System.out.println();
+        for (Product p : Order.getTotalProducts()) {
+            System.out.printf("%-22s| W %.1f\n", p.getProductName(), p.getPrice() * p.getTotalQuantity());
+        }
+        System.out.println();
+        System.out.println("1. 돌아가기");
+        displayLine();
+        System.out.print("> ");
     }
 }

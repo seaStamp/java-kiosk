@@ -1,16 +1,17 @@
 package product;
 
-public class Product extends Menu{
+public class Product extends Menu {
     private String productName;
     private double price;
-    private int quantity = 0;
+    private int quantity;
+    private int totalQuantity = 0;
 
 
-    public Product(String menuName, String productName, String info, double price){
+    public Product(String menuName, String productName, String info, double price) {
         super(menuName, info);
         this.productName = productName;
         this.price = price;
-        this.quantity++;
+        this.quantity = 0;
     }
 
     public String getProductName() {
@@ -24,11 +25,17 @@ public class Product extends Menu{
     public int getQuantity() {
         return this.quantity;
     }
-    public void increaseQuantity(){
+
+    public int getTotalQuantity() {
+        return this.totalQuantity;
+    }
+
+    public void increaseQuantity() {
         this.quantity++;
     }
 
-    public void clearQuantity(){
-        this.quantity = 1;
+    public void clearQuantity() {
+        this.totalQuantity += this.quantity;
+        this.quantity = 0;
     }
 }

@@ -1,4 +1,5 @@
 public final class KioskStatus {
+    public static final int MANAGER = 0;
     public static final int MAIN_MENU = 1;
     public static final int PRODUCT_MENU = 2;
     public static final int PRODUCT_ADD = 3;
