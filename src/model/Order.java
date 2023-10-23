@@ -1,14 +1,12 @@
 package model;
 
-import model.Product;
-
 import java.util.ArrayList;
 
 public class Order {
 
-    static private ArrayList<Product> totalProducts = new ArrayList<>();
+    static private ArrayList<Product> totalProducts;
     private int id = 1;
-    private ArrayList<Product> products = new ArrayList<>();
+    private ArrayList<Product> products;
 
     public ArrayList<Product> getProducts() {
         return this.products;
@@ -22,6 +20,10 @@ public class Order {
         return this.id;
     }
 
+    public Order(){
+        totalProducts = new ArrayList<>();
+        products = new ArrayList<>();
+    }
     // 전체 금액
     public double getTotalCost() {
         double cost = 0;

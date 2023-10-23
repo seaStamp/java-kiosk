@@ -3,6 +3,7 @@ package kiosk;
 import model.Menu;
 import model.Order;
 import model.Product;
+import product.Bugger;
 
 public class OutputDevice {
 
@@ -15,7 +16,7 @@ public class OutputDevice {
     }
 
     // 메인 메뉴화면 출력
-    public int displayMainMenu(Menu[] m) {
+    public void displayMainMenu(Menu[] m) {
         welcomeMessage();
         int i = 0;
         System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요.");
@@ -30,23 +31,20 @@ public class OutputDevice {
         System.out.printf("%d. %-10s| %s\n", ++i, "Cancel", "진행중인 주문을 취소합니다");
         displayLine();
         System.out.print("> ");
-        return i;
     }
 
     // 상품화면을 출력
-    public int displayProductMenu(Product[] p) {
-        int i;
+    public void displayProductMenu(Product[] p) {
         welcomeMessage();
         System.out.println("아래 상품메뉴판을 보시고 상품 골라 입력해주세요.");
         System.out.println();
         System.out.println("[ " + p[0].getMenuName() + " MENU ]");
-        for (i = 0; i < p.length; i++) {
+        for (int i = 0; i < p.length; i++) {
             System.out.printf("%d. %-22s | W %.1f | %s\n", i + 1, p[i].getProductName(), p[i].getPrice(),
                     p[i].getMenuInfo());
         }
         displayLine();
         System.out.print("> ");
-        return i;
     }
 
 
@@ -94,11 +92,12 @@ public class OutputDevice {
         System.out.println("주문이 완료되었습니다!");
         System.out.println();
         System.out.printf("대기번호는 [ %d ] 번 입니다.\n", o.getId());
-        System.out.printf("(3초후 메뉴판으로 돌아갑니다.))\n");
+        System.out.println("(3초후 메뉴판으로 돌아갑니다.)");
         Thread.sleep(3000);
         displayLine();
     }
 
+    // 관리자모드 화면
     public void displayManagerMode() {
         System.out.println("[ 총 판매금액 현황 ]");
         System.out.printf("현재까지 총 판매된 금액은 [ W %.1f ] 입니다.\n\n", Order.getTotalProductsCost());
@@ -110,6 +109,15 @@ public class OutputDevice {
         }
         System.out.println();
         System.out.println("1. 돌아가기");
+        displayLine();
+        System.out.print("> ");
+    }
+
+    public void displayProductOption(Product p) {
+        System.out.printf("\"%-22s | W %.1f | %s\"\n", p.getProductName(), p.getPrice(), p.getMenuInfo());
+        System.out.println("위 메뉴의 어떤 옵션으로 추가하시겠습니까?");
+        System.out.printf("1. %s(W %.1f) \t\t2. %s(W %.1f)\n", p.getOption(), p.getPrice(), p.pOption.getOption(),
+                p.pOption.getPrice());
         displayLine();
         System.out.print("> ");
     }

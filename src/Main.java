@@ -1,4 +1,5 @@
 import kiosk.Kiosk;
+import product.McProduct;
 
 public class Main {
     public static void main(String[] args) {

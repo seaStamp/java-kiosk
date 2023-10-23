@@ -1,10 +1,14 @@
 package model;
 
+import product.Bugger;
+
 public class Product extends Menu {
-    private String productName;
-    private double price;
+    protected final String productName;
+    private final double price;
+    protected String option = null;
     private int quantity;
     private int totalQuantity = 0;
+    public Product pOption = null;
 
 
     public Product(String menuName, String productName, String info, double price) {
@@ -14,6 +18,13 @@ public class Product extends Menu {
         this.quantity = 0;
     }
 
+    public Product(Product p, String option, double price) {
+        super(p.menuName, p.info);
+        this.productName = p.productName + "(" + option + ")";
+        this.price = price;
+        this.option = option;
+        p.pOption = this;
+    }
     public String getProductName() {
         return this.productName;
     }
@@ -26,10 +37,12 @@ public class Product extends Menu {
         return this.quantity;
     }
 
+    public String getOption(){
+        return this.option;
+    }
     public int getTotalQuantity() {
         return this.totalQuantity;
     }
-
     public void increaseQuantity() {
         this.quantity++;
     }

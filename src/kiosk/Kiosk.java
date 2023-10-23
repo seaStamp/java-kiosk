@@ -3,6 +3,7 @@ package kiosk;
 import model.Menu;
 import model.Order;
 import model.Product;
+import product.Bugger;
 import product.McMenu;
 import product.McProduct;
 
@@ -18,7 +19,7 @@ public class Kiosk {
 
     public static boolean start() {
         status = KioskStatus.MAIN_MENU;
-        int item = 0;
+        Product select = null;
         while (status > -1) {
             switch (status) {
                 case KioskStatus.MANAGER -> {
@@ -31,11 +32,15 @@ public class Kiosk {
                 }
                 case KioskStatus.PRODUCT_MENU -> {
                     display.displayProductMenu(products);
-                    item = controllPoroductMenu();
+                    select = controllPoroductMenu();
+                }
+                case KioskStatus.PRODCUT_OPTION -> {
+                    display.displayProductOption(select);
+                    select = controllProductOption(select);
                 }
                 case KioskStatus.PRODUCT_ADD -> {
-                    display.displayAddProduct(products[item]);
-                    controllAddProduct(products[item]);
+                    display.displayAddProduct(select);
+                    controllAddProduct(select);
                 }
                 case KioskStatus.CART -> {
                     display.displayCart(orders);
@@ -53,9 +58,9 @@ public class Kiosk {
                     } finally {
                         status = KioskStatus.MAIN_MENU;
                         controllOrderComplete();
-                        try{
+                        try {
                             input.receiveClean();
-                        } catch (Exception ignored){
+                        } catch (Exception ignored) {
                         }
                     }
                 }
@@ -80,7 +85,6 @@ public class Kiosk {
         display.displayLine();
         status = KioskStatus.PRODUCT_MENU;
         previousStatus = KioskStatus.MAIN_MENU;
-        //갯수에따른 리팩토링이 필요할지도
         switch (answer) {
             case -1 -> status = previousStatus;
             case 0 -> status = KioskStatus.MANAGER;
@@ -94,16 +98,23 @@ public class Kiosk {
     }
 
     // 상품메뉴를 컨트롤 하는 메서드
-    public static int controllPoroductMenu() {
+    public static Product controllPoroductMenu() {
         int answer = input.receiveInput(products.length);
         display.displayLine();
         previousStatus = KioskStatus.PRODUCT_MENU;
         switch (answer) {
             case -1 -> status = previousStatus;
             case 0 -> status = KioskStatus.MANAGER;
-            default -> status = KioskStatus.PRODUCT_ADD;
+            default -> {
+                if (products[answer - 1].getOption() != null) {
+                    status = KioskStatus.PRODCUT_OPTION;
+                } else {
+                    status = KioskStatus.PRODUCT_ADD;
+                }
+                return products[answer - 1];
+            }
         }
-        return answer - 1; // 인덱스 값으로 넘기기 위해
+        return null;
     }
 
     // 구매화면 컨트롤 하는 메서드
@@ -164,5 +175,21 @@ public class Kiosk {
         Order.saveTotalProducts(orders.getProducts());
         orders.orderClear();
         orders.upId();
+    }
+
+    // 옵션 선택 화면
+    public static Product controllProductOption(Product p) {
+        int answer = input.receiveInput(2);
+        Product temp = p;
+        display.displayLine();
+        previousStatus = KioskStatus.PRODCUT_OPTION;
+        status = KioskStatus.PRODUCT_ADD;
+        switch (answer) {
+            case -1 -> status = previousStatus;
+            case 0 -> status = KioskStatus.MANAGER;
+            case 1 -> temp = p;
+            case 2 -> temp = p.pOption;
+        }
+        return temp;
     }
 }
