@@ -3,7 +3,6 @@ package kiosk;
 import model.Menu;
 import model.Order;
 import model.Product;
-import product.Bugger;
 
 public class OutputDevice {
 

@@ -3,7 +3,6 @@ package kiosk;
 import model.Menu;
 import model.Order;
 import model.Product;
-import product.Bugger;
 import product.McMenu;
 import product.McProduct;
 
@@ -11,13 +10,13 @@ public class Kiosk {
     private static int status;
     private static int previousStatus;
 
-    private static Menu[] menu = McMenu.mcMenu.clone();
+    private final static Menu[] menu = McMenu.mcMenu.clone();
     private static Product[] products;
-    private static OutputDevice display = new OutputDevice();
-    private static InputDevice input = new InputDevice();
-    private static Order orders = new Order();
+    private final static OutputDevice display = new OutputDevice();
+    private final static InputDevice input = new InputDevice();
+    private final static Order orders = new Order();
 
-    public static boolean start() {
+    public static void start() {
         status = KioskStatus.MAIN_MENU;
         Product select = null;
         while (status > -1) {
@@ -34,7 +33,7 @@ public class Kiosk {
                     display.displayProductMenu(products);
                     select = controllPoroductMenu();
                 }
-                case KioskStatus.PRODCUT_OPTION -> {
+                case KioskStatus.PRODUCT_OPTION -> {
                     display.displayProductOption(select);
                     select = controllProductOption(select);
                 }
@@ -66,8 +65,6 @@ public class Kiosk {
                 }
             }
         }
-
-        return true;
     }
 
     public static void controllManager() {
@@ -107,7 +104,7 @@ public class Kiosk {
             case 0 -> status = KioskStatus.MANAGER;
             default -> {
                 if (products[answer - 1].getOption() != null) {
-                    status = KioskStatus.PRODCUT_OPTION;
+                    status = KioskStatus.PRODUCT_OPTION;
                 } else {
                     status = KioskStatus.PRODUCT_ADD;
                 }
@@ -182,12 +179,11 @@ public class Kiosk {
         int answer = input.receiveInput(2);
         Product temp = p;
         display.displayLine();
-        previousStatus = KioskStatus.PRODCUT_OPTION;
+        previousStatus = KioskStatus.PRODUCT_OPTION;
         status = KioskStatus.PRODUCT_ADD;
         switch (answer) {
             case -1 -> status = previousStatus;
             case 0 -> status = KioskStatus.MANAGER;
-            case 1 -> temp = p;
             case 2 -> temp = p.pOption;
         }
         return temp;

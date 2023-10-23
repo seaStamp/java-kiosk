@@ -45,7 +45,6 @@ public class McProduct {
     private final static Dessert CHOCOSUNDAE
             = new Dessert(McMenu.DESSERTS.getMenuName(), "Choco Sundae", "신선한 우유로 만든 아이스크림에 달콤한 초콜렛 시럽이 입안 가득", 2.8);
     public static Bugger[] buggers = {BIGMAC, SANGHAI, SHUSHU, BULGOGI};
-    public static Bugger[] buggersSet = {BIGMAC_SET,SANGHAI_SET,SHUSHU_SET,BULGOGI_SET};
     public static Side[] sides = {FRECNCH_FRIES, MCNUGGETS, CHEESE_STICK};
     public static Beverage[] beverages = {COKE, COKE_ZERO, SPRITE};
     public static Dessert[] desserts = {TAROPIE, OREOMCFLURRY, CHOCOSUNDAE};

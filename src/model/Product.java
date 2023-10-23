@@ -1,7 +1,5 @@
 package model;
 
-import product.Bugger;
-
 public class Product extends Menu {
     protected final String productName;
     private final double price;
